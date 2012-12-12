@@ -19,11 +19,11 @@ function ccpo_menu() {
 		$role = $wpdb->prefix . 'capabilities';
 		$current_user->role = array_keys($current_user->$role);
 		$current_role = $current_user->role[0];
-		$role = get_option( 'ccpo_order_manager', 'administrator' );
-		add_menu_page('Post Orders', 'Post Order', 'administrator', 'ccpo', 'post_order_category');
-		add_submenu_page( "ccpo", "Order Permission", "Permission", 'administrator', "subccpo", "ccpo_admin_right" );
+		$role = get_option( 'ccpo_order_manager', 'editor' );
+		add_menu_page('Post Orders', 'Post Order', 'editor', 'ccpo', 'post_order_category');
+		add_submenu_page( "ccpo", "Order Permission", "Permission", 'editor', "subccpo", "ccpo_admin_right" );
 				
-		if($current_role != 'administrator') {
+		if($current_role != 'editor') {
 				add_submenu_page( "ccpo", "Post Order", "Post Order", $role, "subccpo1", "post_order_category" );
 		}
 }
@@ -41,7 +41,7 @@ function ccpo_admin_right() {
 				print "Role Updated";
 		 
 		}
-		$role = get_option( 'ccpo_order_manager', 'administrator' );
+		$role = get_option( 'ccpo_order_manager', 'editor' );
     $roles = $wp_roles->get_names();
 		$select  = "";
 		foreach($roles as $key=> $label) {
